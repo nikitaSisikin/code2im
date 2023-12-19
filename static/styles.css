@@ -1,0 +1,42 @@
+* {
+    /* Apply border-box sizing to all elements for consistent box model */
+    box-sizing: border-box;
+}
+
+body {
+    /* Set the font family for the entire document to sans-serif */
+    font-family: sans-serif;
+    /* Set the base font size to 20 pixels */
+    font-size: 20px;
+    /* Set the line height to 1.3 times the font size for better readability */
+    line-height: 1.3em;
+}
+
+main {
+    /* Center the content horizontally using flexbox */
+    display: flex;
+    justify-content: center;
+    /* Center the text within the container */
+    text-align: center;
+}
+
+h1 {
+    /* Set the font size of h1 elements to 2 times the base font size */
+    font-size: 2em;
+    /* Center the text within the h1 element */
+    text-align: center;
+    /* Set the line height to 1em for compact spacing */
+    line-height: 1em;
+}
+
+h1 a {
+    /* Remove underlines from h1 anchor elements */
+    text-decoration: none;
+    /* Inherit the color from the parent element for better consistency */
+    color: inherit;
+}
+
+span {
+    /* Set the text color of span elements to deepskyblue */
+    color: deepskyblue;
+}
