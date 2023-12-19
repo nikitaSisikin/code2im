@@ -1,15 +1,20 @@
+<!-- Extend the base.html template -->
 {% extends "base.html" %}
 
+<!-- Override the title block in the base template -->
 {% block title %}
   - Code Input
 {% endblock title %}
 
+<!-- Override the content block in the base template -->
 {% block content %}
-<form>
-    <textarea 
-        class="code" 
-        name="code" 
-        placeholder="Paste you code here 🐍." 
-    > {{code}}</textarea>
-</form>
+    <!-- Create a form for code input -->
+    <form>
+        <!-- Textarea for users to paste their code with a placeholder -->
+        <textarea 
+            class="code" 
+            name="code" 
+            placeholder="Paste your code here 🐍."
+        > {{code}}</textarea>
+    </form>
 {% endblock content %}

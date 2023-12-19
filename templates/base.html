@@ -1,9 +1,17 @@
+<!-- Declare the document type and set the language to English -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set the character set to UTF-8 for proper encoding -->
     <meta charset="UTF-8">
+    
+    <!-- Configure the viewport for better responsiveness on various devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Set the title of the page using a template block -->
     <title>Code to Image {% block title %}{% endblock title %}</title>
+    
+    <!-- Link the external stylesheet 'styles.css' from the 'static' directory -->
     <link 
         rel="stylesheet" 
         type="text/css"
@@ -11,9 +19,12 @@
     />
 </head>
 <body>
+    <!-- Create the main heading with a link to the 'code' route and dynamic content -->
     <h1>
         <a href="{{ url_for('code') }}">Code to Image</a>: <span>{{message}}</span>
     </h1>
+    
+    <!-- Define the main content section using template blocks -->
     <main>
         {% block content %}
         {% endblock content %}
