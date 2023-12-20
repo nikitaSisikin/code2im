@@ -30,7 +30,7 @@ def code():
         session["code"] = PLACEHOLDER_CODE
     lines = session["code"].split("\n")
     context = {
-        "message": "Paste Your Python Code 🐍",
+        "message": "Paste Your Code 🦎",
         "code": session["code"],
         "num_lines": len(lines),
         "max_chars": len(max(lines, key=len)),
@@ -88,7 +88,7 @@ def image():
     target_url = request.host_url + url_for("style")
     image_bytes = take_screenshot_from_url(target_url, session_data)
     context = {
-        "message": "Done! 🎉",
+        "message": "Download Your Image.",
         "image_b64": base64.b64encode(image_bytes).decode("utf-8"),
     }
     return render_template("image.html", **context)

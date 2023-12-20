@@ -28,16 +28,16 @@
     <textarea 
       class="code" 
       name="code" 
-      placeholder="Paste your code here 🐍."
+      placeholder="Paste your code 🐍."
       > {{code}}
     </textarea>
     <!-- Div for Save code and Reset Session buttons -->
     <div class="controls">
       <button class="my-btn-class-17" formmethod="post" formaction="{{ url_for('reset_session') }}">
-        Reset Session 🦎 
+        Reset
       </button>
       <button class="my-btn-class-17" id="next_btn" formmethod="post" formaction="{{ url_for('save_style') }}">
-      Continue 🦖
+      Continue
     </button>
     </div>
   </form>
