@@ -58,8 +58,12 @@ def reset_session():
 
 @app.route("/style", methods=["GET"])
 def style():
+    if session.get("code") is None:
+        session["code"] = PLACEHOLDER_CODE
+
     if session.get("style") is None:
         session["style"] = DEFAULT_STYLE
+
     formatter = HtmlFormatter(style=session["style"])
     context = {
         "message": "Select Your Style 🎨",
@@ -72,6 +76,7 @@ def style():
         ),
     }
     return render_template("style_selection.html", **context)
+
 
 
 @app.route("/save_style", methods=["POST"])
