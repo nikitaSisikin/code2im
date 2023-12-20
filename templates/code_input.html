@@ -10,11 +10,21 @@
 {% block content %}
     <!-- Create a form for code input -->
     <form>
-        <!-- Textarea for users to paste their code with a placeholder -->
-        <textarea 
-            class="code" 
-            name="code" 
-            placeholder="Paste your code here 🐍."
-        > {{code}}</textarea>
+      <!-- Textarea for users to paste their code with a placeholder -->
+      <textarea 
+          class="code" 
+          name="code" 
+          placeholder="Paste your code here 🐍."
+        > {{code}}
+      </textarea>
+      <!-- Div for Save code and Reset Session buttons -->
+      <div class="controls">
+        <button formmethod="post" formaction="{{ url_for('reset_session') }}">
+          Reset Session 🦎 
+        </button>
+        <button formmethod="post" formaction="{{ url_for('save_code') }}">
+          Save Code 🐢 
+        </button>
+      </div>
     </form>
 {% endblock content %}

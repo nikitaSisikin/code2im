@@ -32,6 +32,15 @@ def code():
     # Render the 'code_input.html' template with the provided context
     return render_template("code_input.html", **context)
 
+# Define a route for saving the code
+@app.route("/save_code", methods=["POST"])
+def save_code():
+    # Retrieve the code from the form submitted in the request
+    session["code"] = request.form.get("code")
+    
+    # Redirect to the '/code' route to display the updated code input page
+    return redirect(url_for("code"))
+
 # Define a route for resetting the session
 @app.route("/reset_session", methods=["POST"])
 def reset_session():
