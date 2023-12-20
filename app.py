@@ -17,7 +17,7 @@ app.secret_key = "7eece3a4f7d9f421394148f606110eec2c15d1de6bff7d7e507f96d6331816
 placeholder_code = "print('Hello, World!')"
 
 # Define a route for handling code-related actions
-@app.route("/save_code", methods=["GET"])
+@app.route("/", methods=["GET"])
 def code():
     # If the "code" key is not in the session, initialize it with the placeholder code
     if session.get("code") is None:

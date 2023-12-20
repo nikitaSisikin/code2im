@@ -1,10 +1,10 @@
+/* Apply border-box sizing to all elements for consistent box model */
 * {
-    /* Apply border-box sizing to all elements for consistent box model */
     box-sizing: border-box;
 }
 
+/* Set the font family for the entire document to sans-serif */
 body {
-    /* Set the font family for the entire document to sans-serif */
     font-family: sans-serif;
     /* Set the base font size to 20 pixels */
     font-size: 20px;
@@ -12,16 +12,16 @@ body {
     line-height: 1.3em;
 }
 
+/* Center the content horizontally using flexbox */
 main {
-    /* Center the content horizontally using flexbox */
     display: flex;
     justify-content: center;
     /* Center the text within the container */
     text-align: center;
 }
 
+/* Set the font size of h1 elements to 2 times the base font size */
 h1 {
-    /* Set the font size of h1 elements to 2 times the base font size */
     font-size: 2em;
     /* Center the text within the h1 element */
     text-align: center;
@@ -29,14 +29,83 @@ h1 {
     line-height: 1em;
 }
 
+/* Remove underlines from h1 anchor elements */
 h1 a {
-    /* Remove underlines from h1 anchor elements */
     text-decoration: none;
     /* Inherit the color from the parent element for better consistency */
     color: inherit;
 }
 
+/* Set the text color of span elements to deepskyblue */
 span {
-    /* Set the text color of span elements to deepskyblue */
     color: deepskyblue;
 }
+
+/* Buttons and Select elements */
+button, select {
+    cursor: pointer;
+    font-size: 100%;
+    margin: 0.25em;
+    min-width: 8em;
+}
+
+/* Styling for a group of controls */
+.controls {
+    margin: 1em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Styling for code input area */
+.code {
+    font-family: monospace;
+    /* Apply a subtle box shadow for depth */
+    box-shadow: #767676 0px 20px 30px -10px;
+    /* Add rounded corners to the code input box */
+    border-radius: 0.5em;
+    /* Apply padding inside the code input box */
+    padding: 1em 2em;
+    /* Set a minimum width for a readable code input */
+    min-width: 32em;
+    /* Allow the code input box to expand to full width */
+    max-width: 100%;
+    /* Set a minimum height for a reasonable input area */
+    min-height: 12em;
+    /* Align code text to the left for readability */
+    text-align: left;
+    /* Apply a subtle border for visual separation */
+    border: 1px solid #cecece;
+    /* Add margin around the code input box */
+    margin: 1em;
+    /* Set line height for better readability of code */
+    line-height: 1.4em;
+}
+
+.my-btn-class-17 {
+appearance: button; background-color: rgb(0, 0, 0); background-image: none; border: 1px solid rgb(0, 0, 0); border-radius: 4px; box-shadow: rgb(255, 255, 255) 4px 4px 0px 0px, rgb(0, 0, 0) 4px 4px 0px 1px; box-sizing: border-box; color: rgb(255, 255, 255); cursor: pointer; display: inline-block; font-family: Arial, sans-serif; font-size: inherit; font-weight: 400; line-height: 20px; margin: 0px 5px 10px 0px; overflow: visible; padding: 0.9rem 2.4rem; text-align: center; text-decoration: none; text-transform: none; touch-action: manipulation; user-select: none; vertical-align: middle; white-space: nowrap;
+}
+
+.my-btn-class-17:focus {
+color: rgb(255, 255, 255); text-decoration: none;
+}
+
+.my-btn-class-17:hover {
+text-decoration: none; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);
+}
+
+.my-btn-class-17:active {
+box-shadow: rgba(0, 0, 0, 0.125) 0px 3px 5px inset; outline: 0px; color: rgb(255, 255, 255);
+}
+
+.my-btn-class-17:not([disabled]):active {
+box-shadow: rgb(255, 255, 255) 2px 2px 0px 0px, rgb(0, 0, 0) 2px 2px 0px 1px; transform: translate(2px, 2px);
+}
+
+#save_code_btn {
+    background-color: deepskyblue;
+}
+
+
+
