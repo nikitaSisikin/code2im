@@ -8,23 +8,29 @@
 
 <!-- Override the content block in the base template -->
 {% block content %}
-    <!-- Create a form for code input -->
-    <form>
-      <!-- Textarea for users to paste their code with a placeholder -->
-      <textarea 
-          class="code" 
-          name="code" 
-          placeholder="Paste your code here 🐍."
-        > {{code}}
-      </textarea>
-      <!-- Div for Save code and Reset Session buttons -->
-      <div class="controls">
-        <button class="my-btn-class-17" formmethod="post" formaction="{{ url_for('reset_session') }}">
-          Reset Session 🦎 
-        </button>
-        <button class="my-btn-class-17" id="save_code_btn" formmethod="post" formaction="{{ url_for('save_code') }}">
-          Save Code 🐢 
-        </button>
-      </div>
-    </form>
+  <style>
+    .code {
+      min-height: calc({{ num_lines }}em * 1.5 + 2 * 1em);
+      min-width: calc({{ num_lines }}em * 1.5 + 2 * 1em);
+    }
+  </style>
+  <!-- Create a form for code input -->
+  <form>
+    <!-- Textarea for users to paste their code with a placeholder -->
+    <textarea 
+        class="code" 
+        name="code" 
+        placeholder="Paste your code here 🐍."
+      > {{code}}
+    </textarea>
+    <!-- Div for Save code and Reset Session buttons -->
+    <div class="controls">
+      <button class="my-btn-class-17" formmethod="post" formaction="{{ url_for('reset_session') }}">
+        Reset Session 🦎 
+      </button>
+      <button class="my-btn-class-17" id="save_code_btn" formmethod="post" formaction="{{ url_for('save_code') }}">
+        Save Code 🐢 
+      </button>
+    </div>
+  </form>
 {% endblock content %}

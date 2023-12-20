@@ -22,11 +22,14 @@ def code():
     # If the "code" key is not in the session, initialize it with the placeholder code
     if session.get("code") is None:
         session["code"] = placeholder_code
-    
+    # get code lines
+    lines = session["code"].split("\n")
     # Prepare the context for rendering the template
     context = {
         "message": "Paste your Python code here 🐍",
         "code": session["code"],
+        "num_lines": len(lines),
+        "max_chars": len(max(lines, key=len)),
     }
     
     # Render the 'code_input.html' template with the provided context
