@@ -12,12 +12,17 @@ from pygments.lexers import Python3Lexer
 from pygments.styles import get_all_styles
 import base64
 from utils import take_screenshot_from_url
+import secrets
 
 # Create a Flask application instance
 app = Flask(__name__)
 
-# Set a secret key for session management
-app.secret_key = "7eece3a4f7d9f421394148f606110eec2c15d1de6bff7d7e507f96d63318169d"
+# Generate a random secret key for each session
+def generate_secret_key():
+    return secrets.token_hex(16)  # Generates a 32-character hexadecimal string
+
+secret = generate_secret_key()
+app.secret_key = secret
 
 # Variables
 PLACEHOLDER_CODE = "print('Hi')"

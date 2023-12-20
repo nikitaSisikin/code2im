@@ -44,11 +44,11 @@
     {{ highlighted_code | safe }}
   </div>
   <div class="controls">
-    <button class="my-btn-class-17" formmethod="get" formaction="{{ url_for('code') }}">
-      Back
-    </button>
     <button class="my-btn-class-17" formmethod="get" id="save_btn" formaction="{{ url_for('image') }}">
       Save
+    </button>
+    <button class="my-btn-class-17" formmethod="get" formaction="{{ url_for('code') }}">
+      Back
     </button>
   </div>
 </form>
