@@ -17,6 +17,9 @@
     #next_btn {
       background-color: rgb(39, 239, 192);
     }
+    #main_page_span {
+      color: rgb(39, 239, 192);
+    }
   </style>
   <!-- Create a form for code input -->
   <form>
@@ -32,11 +35,8 @@
       <button class="my-btn-class-17" formmethod="post" formaction="{{ url_for('reset_session') }}">
         Reset Session 🦎 
       </button>
-      <button class="my-btn-class-17" id="save_code_btn" formmethod="post" formaction="{{ url_for('save_code') }}">
-        Save Code 🐢 
-      </button>
       <button class="my-btn-class-17" id="next_btn" formmethod="post" formaction="{{ url_for('save_style') }}">
-      Next 🦖
+      Continue 🦖
     </button>
     </div>
   </form>

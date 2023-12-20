@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.secret_key = "7eece3a4f7d9f421394148f606110eec2c15d1de6bff7d7e507f96d63318169d"
 
 # Placeholder code for initial session value
-placeholder_code = "print('Hello, World!')"
+placeholder_code = "print('Hi')"
 # Default style
 default_style = "monokai"
 
@@ -82,3 +82,10 @@ def style():
 def save_style():
     session["style"] = request.form.get("style")
     return redirect(url_for("style"))
+
+@app.route("/image", methods=["GET"])
+def image():
+    context = {
+        "message": "Done. 🍉",
+    }
+    return render_template("image.html", **context)
