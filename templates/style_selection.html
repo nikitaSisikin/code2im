@@ -1,0 +1,47 @@
+<!-- templates/style_selection.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+  - Style Selection
+{% endblock title %}
+
+{% block content %}
+<style>
+  {{ style_definitions }}
+
+  .code {
+    background-color: {{ style_bg_color }};
+  }
+
+  select {
+    height: 2.5em;
+    border-radius: 0.5em;
+  }
+
+  #back_btn {
+    background-color: deepskyblue;
+}
+
+</style>
+<form>
+  <div class="controls">
+    <select name="style">
+      {% for style_name in all_styles %}
+        <option value="{{ style_name }}">{{ style_name }}</option>
+      {% endfor %}
+    </select>
+    <button class="my-btn-class-17" formmethod="post" formaction="{{ url_for('save_style') }}">
+      Change Style 🐬
+    </button>
+  </div>  
+  <div class="code">
+    {{ highlighted_code | safe }}
+  </div>
+  <div class="controls">
+    <button class="my-btn-class-17" id="back_btn" formmethod="get" formaction="{{ url_for('code') }}">
+      Back 🐳
+    </button>
+  </div>
+</form>
+{% endblock content %}

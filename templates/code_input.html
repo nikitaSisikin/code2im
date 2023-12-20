@@ -13,6 +13,10 @@
       min-height: calc({{ num_lines }}em * 1.5 + 2 * 1em);
       min-width: calc({{ num_lines }}em * 1.5 + 2 * 1em);
     }
+
+    #next_btn {
+      background-color: rgb(39, 239, 192);
+    }
   </style>
   <!-- Create a form for code input -->
   <form>
@@ -31,6 +35,9 @@
       <button class="my-btn-class-17" id="save_code_btn" formmethod="post" formaction="{{ url_for('save_code') }}">
         Save Code 🐢 
       </button>
+      <button class="my-btn-class-17" id="next_btn" formmethod="post" formaction="{{ url_for('save_style') }}">
+      Next 🦖
+    </button>
     </div>
   </form>
 {% endblock content %}

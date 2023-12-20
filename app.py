@@ -6,6 +6,10 @@ from flask import (
     request,
     url_for,
 )
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import Python3Lexer
+from pygments.styles import get_all_styles
 
 # Create a Flask application instance
 app = Flask(__name__)
@@ -15,6 +19,8 @@ app.secret_key = "7eece3a4f7d9f421394148f606110eec2c15d1de6bff7d7e507f96d6331816
 
 # Placeholder code for initial session value
 placeholder_code = "print('Hello, World!')"
+# Default style
+default_style = "monokai"
 
 # Define a route for handling code-related actions
 @app.route("/", methods=["GET"])
@@ -26,7 +32,7 @@ def code():
     lines = session["code"].split("\n")
     # Prepare the context for rendering the template
     context = {
-        "message": "Paste your Python code here 🐍",
+        "message": "Paste your code here 🐍",
         "code": session["code"],
         "num_lines": len(lines),
         "max_chars": len(max(lines, key=len)),
@@ -55,3 +61,24 @@ def reset_session():
     
     # Redirect to the '/save_code' route to display the code input page
     return redirect(url_for("code"))
+
+@app.route("/style", methods=["GET"])
+def style():
+    if session.get("style") is None:
+        session["style"] = default_style
+    formatter = HtmlFormatter(style=session["style"])
+    context = {
+        "message": "Select your style 🦋",
+        "all_styles": list(get_all_styles()),
+        "style_definitions": formatter.get_style_defs(),
+        "style_bg_color": formatter.style.background_color,
+        "highlited_code": highlight(
+            session["code"], Python3Lexer(), formatter
+        )
+    }
+    return render_template("style_selection.html", **context)
+
+@app.route("/save_style", methods=["POST"])
+def save_style():
+    session["style"] = request.form.get("style")
+    return redirect(url_for("style"))
