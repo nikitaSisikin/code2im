@@ -11,6 +11,9 @@
     #main_page_span {
         color: rgb(39, 239, 192);
       }
+      #back_btn_2 {
+        background-color: rgb(39, 239, 192);
+      }
 </style>
 <form>
   {% if image_b64 %}
@@ -21,14 +24,15 @@
       />
     </div>
     <a
+    class="my-btn-class-17"
       href="data:image/png;base64,{{ image_b64 | safe }}"
-      download="Your_CodeImage.png"
+      download="code2img.png"
     >
-      Download Your Code Image ⤵️
+      Download Your Code Image
     </a>
   {% endif %}
   <div class="controls">
-    <button class="my-btn-class-17" formmethod="get" formaction="{{ url_for('code') }}">
+    <button id="back_btn_2" class="my-btn-class-17" formmethod="get" formaction="{{ url_for('code') }}">
       Back 
     </button>
   </div>

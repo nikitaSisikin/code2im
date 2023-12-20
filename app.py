@@ -10,6 +10,8 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import Python3Lexer
 from pygments.styles import get_all_styles
+import base64
+from utils import take_screenshot_from_url
 
 # Create a Flask application instance
 app = Flask(__name__)
@@ -17,75 +19,76 @@ app = Flask(__name__)
 # Set a secret key for session management
 app.secret_key = "7eece3a4f7d9f421394148f606110eec2c15d1de6bff7d7e507f96d63318169d"
 
-# Placeholder code for initial session value
-placeholder_code = "print('Hi')"
-# Default style
-default_style = "monokai"
+# Variables
+PLACEHOLDER_CODE = "print('Hi')"
+DEFAULT_STYLE = "monokai"
+NO_CODE_FALLBACK = "# No Code Entered"
 
-# Define a route for handling code-related actions
 @app.route("/", methods=["GET"])
 def code():
-    # If the "code" key is not in the session, initialize it with the placeholder code
     if session.get("code") is None:
-        session["code"] = placeholder_code
-    # get code lines
+        session["code"] = PLACEHOLDER_CODE
     lines = session["code"].split("\n")
-    # Prepare the context for rendering the template
     context = {
-        "message": "Paste your code here 🐍",
+        "message": "Paste Your Python Code 🐍",
         "code": session["code"],
         "num_lines": len(lines),
         "max_chars": len(max(lines, key=len)),
     }
-    
-    # Render the 'code_input.html' template with the provided context
     return render_template("code_input.html", **context)
 
-# Define a route for saving the code
+
 @app.route("/save_code", methods=["POST"])
 def save_code():
-    # Retrieve the code from the form submitted in the request
-    session["code"] = request.form.get("code")
-    
-    # Redirect to the '/code' route to display the updated code input page
+    session["code"] = request.form.get("code") or NO_CODE_FALLBACK
     return redirect(url_for("code"))
 
-# Define a route for resetting the session
+
 @app.route("/reset_session", methods=["POST"])
 def reset_session():
-    # Clear the session data
     session.clear()
-    
-    # Set the "code" key in the session to the placeholder code
-    session["code"] = placeholder_code
-    
-    # Redirect to the '/save_code' route to display the code input page
+    session["code"] = PLACEHOLDER_CODE
     return redirect(url_for("code"))
+
 
 @app.route("/style", methods=["GET"])
 def style():
     if session.get("style") is None:
-        session["style"] = default_style
+        session["style"] = DEFAULT_STYLE
     formatter = HtmlFormatter(style=session["style"])
     context = {
-        "message": "Select your style 🦋",
+        "message": "Select Your Style 🎨",
         "all_styles": list(get_all_styles()),
+        "style": session["style"],
         "style_definitions": formatter.get_style_defs(),
         "style_bg_color": formatter.style.background_color,
-        "highlited_code": highlight(
+        "highlighted_code": highlight(
             session["code"], Python3Lexer(), formatter
-        )
+        ),
     }
     return render_template("style_selection.html", **context)
 
+
 @app.route("/save_style", methods=["POST"])
 def save_style():
-    session["style"] = request.form.get("style")
+    if request.form.get("style") is not None:
+        session["style"] = request.form.get("style")
+    if request.form.get("code") is not None:
+        session["code"] = request.form.get("code") or NO_CODE_FALLBACK
     return redirect(url_for("style"))
+
 
 @app.route("/image", methods=["GET"])
 def image():
+    session_data = {
+        "name": app.config["SESSION_COOKIE_NAME"],
+        "value": request.cookies.get(app.config["SESSION_COOKIE_NAME"]),
+        "url": request.host_url,
+    }
+    target_url = request.host_url + url_for("style")
+    image_bytes = take_screenshot_from_url(target_url, session_data)
     context = {
-        "message": "Done. 🍉",
+        "message": "Done! 🎉",
+        "image_b64": base64.b64encode(image_bytes).decode("utf-8"),
     }
     return render_template("image.html", **context)
