@@ -102,3 +102,6 @@ def image():
         "image_b64": base64.b64encode(image_bytes).decode("utf-8"),
     }
     return render_template("image.html", **context)
+
+if __name__ == "__main__":
+    app.run()
