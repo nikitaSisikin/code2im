@@ -1,23 +1,22 @@
 # Set base image (host OS)
-FROM ubuntu:22.04
+FROM mcr.microsoft.com/playwright:v1.40.0-jammy
 
-# By default, listen on port 5000
-EXPOSE 5000/tcp
+# Install Python and pip
+RUN apt-get update && apt-get install -y python3-pip
 
-# Set the working directory in the container
+# copy the requirements file into the image
+COPY ./requirements.txt /app/requirements.txt
+
+# switch working directory
 WORKDIR /app
 
-# Copy the dependencies file to the working directory
-COPY requirements.txt .
-
-# Install any dependencies
-RUN apt update
-RUN apt install python3-pip -y
+# Install Python dependencies
 RUN pip install -r requirements.txt
-RUN python3 -m playwright install
 
-# Copy the content of the local src directory to the working directory
-COPY app.py .
+# copy every content from the local file to the image
+COPY . /app
 
-# Specify the command to run on container start
-CMD [ "python", "./app.py" ]
+# configure the container to run in an executed manner
+ENTRYPOINT ["python3"]
+
+CMD ["app.py"]
