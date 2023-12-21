@@ -16,7 +16,9 @@ RUN pip install -r requirements.txt
 # copy every content from the local file to the image
 COPY . /app
 
-# configure the container to run in an executed manner
-ENTRYPOINT ["python3"]
+# Expose the port that gunicorn will run on (adjust as needed)
+EXPOSE 50505
 
-CMD ["app.py"]
+# Use gunicorn as the entrypoint
+ENTRYPOINT ["gunicorn", "app:app"]
+

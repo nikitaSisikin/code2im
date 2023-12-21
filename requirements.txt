@@ -1,6 +1,7 @@
 blinker==1.7.0
 click==8.1.7
 flask==3.0.0
+gunicorn
 greenlet==3.0.1
 importlib-metadata==7.0.0
 itsdangerous==2.1.2

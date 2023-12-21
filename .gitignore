@@ -2,3 +2,6 @@ __pycache__/
 code2img/
 __pycache__/app.cpython-38.pyc
 __pycache__/utils.cpython-38.pyc
+.git*
+**/*.pyc
+.venv/
